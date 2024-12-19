@@ -75,3 +75,4 @@ There are 2454934 tested entries where tested is drug tested and 846689 blank en
 There are 3296814 sanctioned events which is an event recognised by an official federation and 4809 unsactioned.
 There are 24 parent federations with 1211378 entries not coming from a parent federation.
 There are many countries and meet countries, I have decided to map the data to match with rnaturalearth package countries as we will be producing plots based on the countries in that package. This means changes have been made to the data such as 'UK' being mapped to 'United Kingdom' to be recognised properly. There are 1414920 entries missing a birth country but there is no missing data for meet country.
+The mapping was done in '1_Packages_and_Data.R'.
