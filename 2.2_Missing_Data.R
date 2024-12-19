@@ -65,3 +65,28 @@ ggplot(data = map_data_bw) +
     title = "Meet Countries' Contribution to Missing BodyweightKg Data"
   )
 
+# Filter out rows where Sex is "Mx"
+PLD<- PLD %>%
+  filter(Sex != "Mx")
+
+#Missing age against sex, change for bodyweight easily
+ggplot(PLD, aes(x = Sex, fill = factor(missing_BodyweightKg))) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("0" = "blue", "1" = "red"),
+    labels = c("0" = "Not Missing", "1" = "Missing")
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Proportion of Missing BodyweightKg by Sex",
+    y = "Proportion (%)",
+    fill = "Missing BodyweightKg"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  )
