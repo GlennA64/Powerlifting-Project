@@ -1,5 +1,5 @@
 Initial Insights:
-> summary(PLD)
+summary(PLD)
      Name               Sex               Event            Equipment              Age            AgeClass        
  Length:3301623     Length:3301623     Length:3301623     Length:3301623     Min.   : 0.0      Length:3301623    
  Class :character   Class :character   Class :character   Class :character   1st Qu.:20.5      Class :character  
