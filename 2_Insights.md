@@ -66,3 +66,12 @@ We do not need any metrics and these can be derived from data we are leaving in 
 We do not need state as this is too specific given we already have country.
 Same goes for Meet state, town and name.
 We will not be keeping federation as parent federation covers it more broadly.
+
+There are 861823 unique individuals in the dataset (with potential errors).
+There are 860288 female entries and 2441247 male entries and 88 mx entries (which may be removed due to the small sample).
+There are 125931 multi-ply entries, 1501773 raw entries, 1353597 single-ply, 76 straps, 105204 unlimited and 215042 wraps entries.
+Some competitions have many people and so many places but in particular, 1712 DD (Doping), 200755 DQ (Disqualification), 10161 G (Guest) and 17594 NS (No show).
+There are 2454934 tested entries where tested is drug tested and 846689 blank entries.
+There are 3296814 sanctioned events which is an event recognised by an official federation and 4809 unsactioned.
+There are 24 parent federations with 1211378 entries not coming from a parent federation.
+There are many countries and meet countries, I have decided to map the data to match with rnaturalearth package countries as we will be producing plots based on the countries in that package. This means changes have been made to the data such as 'UK' being mapped to 'United Kingdom' to be recognised properly. There are 1414920 entries missing a birth country but there is no missing data for meet country.
