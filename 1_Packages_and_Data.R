@@ -15,6 +15,11 @@ library(Metrics)
 
 PLD <- read.csv("Data.csv")
 
+#See what countries are in rnaturalearth for mapping
+countries <- ne_countries(scale = "medium", returnclass = "sf")
+unique(countries$name)
+
+#Mapping countries
 mappings <- list(
   "UK" = "United Kingdom",
   "England" = "United Kingdom",
@@ -61,10 +66,8 @@ mappings <- list(
   "Timor-Leste" = "Timor-Leste",
   "Macao" = "Macao",
   "Hong Kong" = "Hong Kong"
-  # Extend as needed for other cases
 )
 
-# Define a function to map values
 map_country <- function(country, mapping) {
   if (!is.na(country) && country %in% names(mapping)) {
     return(mapping[[country]])
@@ -73,6 +76,5 @@ map_country <- function(country, mapping) {
   }
 }
 
-# Apply to PLD columns
 PLD$Country <- sapply(PLD$Country, map_country, mapping = mappings)
 PLD$MeetCountry <- sapply(PLD$MeetCountry, map_country, mapping = mappings)
