@@ -90,3 +90,36 @@ ggplot(PLD, aes(x = Sex, fill = factor(missing_BodyweightKg))) +
     legend.title = element_text(size = 12),
     legend.text = element_text(size = 10)
   )
+
+# Convert the Date column to Date type
+PLD$Date <- as.Date(PLD$Date, format = "%Y-%m-%d") # Adjust the format if needed
+PLD$missing_Age <- is.na(PLD$Age)
+PLD$missing_BodyweightKg <- is.na(PLD$BodyweightKg)
+# Extract Year from Date
+PLD$Year <- format(PLD$Date, "%Y")
+# Convert Year to numeric if it's still a character
+PLD$Year <- as.numeric(format(as.Date(PLD$Date), "%Y"))
+# Total missing data for Age (across the entire dataset)
+total_missing_age <- sum(PLD$missing_Age, na.rm = TRUE)
+# Aggregate missing data for Age by Year
+missing_data_by_year_Age <- aggregate(missing_Age ~ Year, data = PLD, FUN = function(x) sum(x, na.rm = TRUE))
+# Calculate the proportion of missing age data for each year
+missing_data_by_year_Age$proportion_missing <- missing_data_by_year_Age$missing_Age / total_missing_age
+ggplot(missing_data_by_year_Age, aes(x = Year, y = proportion_missing)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") +
+  labs(title = "Proportion of Missing Age Data by Year (Relative to Total Missing)", 
+       x = "Year", y = "Proportion of Missing Age") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+# Calculate the proportion of missing bodyweight data for each year
+# Total missing data for Age (across the entire dataset)
+total_missing_bodyweightKg <- sum(PLD$missing_BodyweightKg, na.rm = TRUE)
+# Aggregate missing data for BodyweightKg by Year
+missing_data_by_year_BodyweightKg <- aggregate(missing_BodyweightKg ~ Year, data = PLD, FUN = function(x) sum(x, na.rm = TRUE))
+missing_data_by_year_BodyweightKg$proportion_missing <- missing_data_by_year_BodyweightKg$missing_BodyweightKg / total_missing_bodyweightKg
+ggplot(missing_data_by_year_BodyweightKg, aes(x = Year, y = proportion_missing)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red") +
+  labs(title = "Proportion of Missing BodyweightKg Data by Year (Relative to Total Missing)", 
+       x = "Year", y = "Proportion of Missing BodyweightKg") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
