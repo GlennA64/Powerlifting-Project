@@ -1,10 +1,12 @@
 #Get an initial summary of the dataset
 summary(PLD)
 
-#Take the columns we want
+#Take the columns we want and filter for data with integrity
 PLD <- PLD %>%
-  select(Name, Sex, Equipment, Age, BodyweightKg, Best3BenchKg, Place, Tested, 
-         Country, ParentFederation, Date, MeetCountry, Sanctioned)
+  filter(Tested == "Yes") %>%
+  filter(Sanctioned == "Yes") %>%
+  select(Name, Sex, Equipment, Age, BodyweightKg, Best3BenchKg, Place, 
+         Country, ParentFederation, Date, MeetCountry)
 
 #See how many unique individuals there are
 length(unique(PLD$Name))
