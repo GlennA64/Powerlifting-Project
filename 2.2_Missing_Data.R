@@ -123,3 +123,9 @@ ggplot(missing_data_by_year_BodyweightKg, aes(x = Year, y = proportion_missing))
   labs(title = "Proportion of Missing BodyweightKg Data by Year (Relative to Total Missing)", 
        x = "Year", y = "Proportion of Missing BodyweightKg") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+PLD <- PLD %>%
+  filter(!is.na(Age))
+
+PLD <- PLD %>%
+  filter(!is.na(BodyweightKg))
